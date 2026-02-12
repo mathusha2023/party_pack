@@ -4,7 +4,7 @@ import 'package:alexeys_returning/ui/themes/base_theme.dart';
 
 class LightTheme extends BaseTheme {
   @override
-  Color get backgroundColor => const Color.fromRGBO(255, 255, 255, 1);
+  Color get backgroundColor => const Color.fromARGB(255, 255, 255, 255);
 
   @override
   Color get primaryAccent => const Color.fromRGBO(235, 235, 235, 1);

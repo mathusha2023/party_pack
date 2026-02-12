@@ -30,7 +30,7 @@ abstract class BaseTheme {
         borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide.none,
       ),
-      hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+      hintStyle: TextStyle(color: Colors.grey, fontSize: 16),
       prefixIconColor: secondaryColor,
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(

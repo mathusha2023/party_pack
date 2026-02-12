@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // AppBar с кнопкой назад
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -7,11 +8,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.isTransparent = false,
     this.textColor,
+    this.route,
   });
 
   final String? title;
   final bool isTransparent;
   final Color? textColor;
+  final String? route;
 
   @override
   Size get preferredSize => Size.fromHeight(56); // or any other size you want
@@ -26,7 +29,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: 100, // Фиксированная ширина для leading
       leading: GestureDetector(
         behavior: HitTestBehavior.opaque, // Кликабельная область
-        onTap: () => Navigator.pop(context),
+        onTap: () => context.go(route ?? "/"), // Переход на предыдущий экран
         child: Padding(
           padding: const EdgeInsets.only(left: 8), // Отступ слева
           child: Row(

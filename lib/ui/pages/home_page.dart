@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   void navigateToMainScreen() {
     if (context.mounted) {
-      context.go("/page1");
+      context.go("/main");
     }
   }
 

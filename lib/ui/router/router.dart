@@ -1,7 +1,7 @@
 import 'package:alexeys_returning/ui/pages/home_page.dart';
-import 'package:alexeys_returning/ui/pages/page1.dart';
-import 'package:alexeys_returning/ui/pages/page2.dart';
-import 'package:alexeys_returning/ui/router/extra_data_model.dart';
+import 'package:alexeys_returning/ui/pages/main_page.dart';
+import 'package:alexeys_returning/ui/pages/make_event_page.dart';
+import 'package:alexeys_returning/ui/pages/pick_map_point_page.dart';
 import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
@@ -9,18 +9,14 @@ final router = GoRouter(
   initialLocation: "/",
   routes: [
     GoRoute(path: "/", builder: (context, state) => const HomePage()),
+    GoRoute(path: "/main", builder: (context, state) => const MainPage()),
     GoRoute(
-      path: "/page1",
-      builder: (context, state) => const Page1(),
-      routes: [
-        GoRoute(
-          path: "/page2",
-          builder: (context, state) {
-            final extraData = state.extra as ExtraDataModel;
-            return Page2(title: extraData.title!);
-          },
-        ),
-      ],
+      path: "/make_event",
+      builder: (context, state) => const MakeEventPage(),
+    ),
+    GoRoute(
+      path: "/pick_map_point",
+      builder: (context, state) => const PickMapPointPage(),
     ),
   ],
 );

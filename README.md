@@ -1,1 +1,1 @@
-My template for flutter applications
+PartyPack - Sumsung project
