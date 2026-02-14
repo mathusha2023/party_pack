@@ -1,8 +1,7 @@
 class EventListModel {
   final String id;
   final String title;
-  final String? date;
-  final String? time;
+  final DateTime? date;
 
-  EventListModel({required this.title, this.date, this.time, required this.id});
+  EventListModel({required this.title, this.date, required this.id});
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:alexeys_returning/data/event_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 class EventsListTile extends StatelessWidget {
   const EventsListTile({super.key, required this.event});
@@ -48,12 +49,11 @@ String getRandomIcon() {
 }
 
 String getDateText(EventListModel event) {
-  if (event.date != null && event.time != null) {
-    return "${event.date} ${event.time}";
-  } else if (event.date != null) {
-    return event.date!;
-  } else if (event.time != null) {
-    return event.time!;
+  if (event.date != null) {
+    DateTime date = event.date!;
+    final formatter = DateFormat('EEEE, d MMMM, HH:mm', 'ru');
+    String result = formatter.format(date);
+    return result[0].toUpperCase() + result.substring(1);
   }
   return "Н/Д";
 }

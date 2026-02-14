@@ -11,13 +11,17 @@ class EventsListPage extends StatefulWidget {
 }
 
 class _EventsListPageState extends State<EventsListPage> {
-  late final Future? _future;
+  late Future? _future;
 
   void fetch() async {
     _future = Future.delayed(Duration(seconds: 1)).then(
       (_) => List.generate(
         20,
-        (index) => EventListModel(id: "$index", title: "Eventd $index"),
+        (index) => EventListModel(
+          id: "$index",
+          title: "Eventd $index",
+          date: DateTime.now(),
+        ),
       ),
     );
   }
