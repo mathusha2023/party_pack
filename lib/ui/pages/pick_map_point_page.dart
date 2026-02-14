@@ -111,7 +111,9 @@ class _PickMapPointPageState extends State<PickMapPointPage> {
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all(
-                                Color.fromARGB(230, 13, 79, 221),
+                                Theme.of(
+                                  context,
+                                ).colorScheme.secondary.withAlpha(225),
                               ),
                             ),
                             onPressed: () {

@@ -53,7 +53,9 @@ class _MainPageState extends State<MainPage> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go("/events_list");
+                    },
                     child: Text("Мои события", style: TextStyle(fontSize: 20)),
                   ),
                 ),
