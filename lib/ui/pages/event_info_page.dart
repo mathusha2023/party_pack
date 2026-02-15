@@ -18,7 +18,7 @@ class _EventInfoPageState extends State<EventInfoPage> {
     _future = Future.delayed(Duration(seconds: 1)).then((_) {
       var users = List.generate(
         10,
-        (index) => UserModel(name: "Alexey", id: "$index", isAdmin: index == 0),
+        (index) => UserModel(name: "Alexey", id: "$index"),
       );
       return EventModel(
         id: widget.id,
@@ -28,6 +28,7 @@ class _EventInfoPageState extends State<EventInfoPage> {
         location: null,
         point: null,
         users: users,
+        adminId: "2",
       );
     });
   }

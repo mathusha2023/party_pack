@@ -9,6 +9,7 @@ class EventModel {
   final String? location;
   final LatLng? point;
   final List<UserModel> users;
+  final String adminId;
 
   EventModel({
     required this.id,
@@ -18,5 +19,6 @@ class EventModel {
     required this.location,
     required this.point,
     required this.users,
+    required this.adminId,
   });
 }

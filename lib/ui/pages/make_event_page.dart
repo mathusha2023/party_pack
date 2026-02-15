@@ -122,8 +122,13 @@ class _MakeEventPageState extends State<MakeEventPage> {
                       options: MapOptions(
                         initialCenter: latLng.LatLng(latitude!, longitude!),
                         initialZoom: 16,
+                        interactionOptions: InteractionOptions(
+                          flags:
+                              InteractiveFlag.doubleTapZoom |
+                              InteractiveFlag.pinchZoom |
+                              InteractiveFlag.scrollWheelZoom,
+                        ),
                       ),
-
                       children: [
                         TileLayer(
                           urlTemplate:
@@ -157,8 +162,7 @@ class _MakeEventPageState extends State<MakeEventPage> {
                       onPressed: () async {
                         if (_nameController.text.isNotEmpty) {
                           String? name = await showNameBottomSheet(context);
-                          if (name != null) {
-                            // TODO: add event
+                          if (name != null && context.mounted) {
                             context.go("/main");
                           }
                         }
@@ -177,7 +181,7 @@ class _MakeEventPageState extends State<MakeEventPage> {
 }
 
 Future showNameBottomSheet(context) async {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
   return showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
@@ -196,7 +200,7 @@ Future showNameBottomSheet(context) async {
               style: TextStyle(fontSize: 18),
             ),
             TextField(
-              controller: _controller,
+              controller: controller,
               autocorrect: false,
               autofocus: true,
               decoration: InputDecoration(hintText: "Ваше имя"),
@@ -206,8 +210,8 @@ Future showNameBottomSheet(context) async {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  if (_controller.text.isNotEmpty) {
-                    return context.pop(_controller.text);
+                  if (controller.text.isNotEmpty) {
+                    return context.pop(controller.text);
                   }
                 },
                 child: Text("Создать событие!", style: TextStyle(fontSize: 20)),
