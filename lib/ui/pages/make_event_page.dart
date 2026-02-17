@@ -35,7 +35,7 @@ class _MakeEventPageState extends State<MakeEventPage> {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    height: 1.2,
+                    height: 1.0,
                   ),
                 ),
                 Text(
@@ -123,10 +123,7 @@ class _MakeEventPageState extends State<MakeEventPage> {
                         initialCenter: latLng.LatLng(latitude!, longitude!),
                         initialZoom: 16,
                         interactionOptions: InteractionOptions(
-                          flags:
-                              InteractiveFlag.doubleTapZoom |
-                              InteractiveFlag.pinchZoom |
-                              InteractiveFlag.scrollWheelZoom,
+                          flags: InteractiveFlag.none,
                         ),
                       ),
                       children: [

@@ -13,6 +13,7 @@ class EventInfoPage extends StatefulWidget {
 
 class _EventInfoPageState extends State<EventInfoPage> {
   late Future _future;
+  bool? isJoined;
 
   void fetch() {
     _future = Future.delayed(Duration(seconds: 1)).then((_) {
@@ -46,9 +47,32 @@ class _EventInfoPageState extends State<EventInfoPage> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           EventModel data = snapshot.data;
+          List<UserModel> users = data.users;
+          isJoined ??= users.any((user) => user.id == "2");
           return Scaffold(
             appBar: MyAppBar(route: "/events_list", title: data.title),
             body: Center(child: Text(widget.id)),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () async {
+                setState(() {
+                  isJoined = !isJoined!;
+                });
+              },
+              icon:
+                  isJoined!
+                      ? null
+                      : Icon(
+                        Icons.sentiment_very_satisfied,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+              label: Text(
+                isJoined! ? "Не смогу прийти(" : "Я приду!",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontSize: 20,
+                ),
+              ),
+            ),
           );
         }
         return Scaffold(
