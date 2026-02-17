@@ -1,5 +1,5 @@
 import 'package:alexeys_returning/data/user_model.dart';
-import 'package:flutter_latlong/flutter_latlong.dart';
+import 'package:latlong2/latlong.dart' as latLng;
 
 class EventModel {
   final String id;
@@ -7,7 +7,7 @@ class EventModel {
   final String? description;
   final DateTime? date;
   final String? location;
-  final LatLng? point;
+  final latLng.LatLng? point;
   final List<UserModel> users;
   final String adminId;
 

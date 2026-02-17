@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:alexeys_returning/data/event_list_model.dart';
+import 'package:alexeys_returning/data/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';

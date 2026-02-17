@@ -1,6 +1,10 @@
 import 'package:alexeys_returning/data/event_model.dart';
 import 'package:alexeys_returning/data/user_model.dart';
+import 'package:alexeys_returning/ui/widgets/event_info_tab.dart';
+import 'package:alexeys_returning/ui/widgets/event_members_tab.dart';
 import 'package:alexeys_returning/ui/widgets/my_app_bar.dart';
+import 'package:alexeys_returning/ui/widgets/my_overflow_bar.dart';
+import 'package:alexeys_returning/ui/widgets/my_part_tab.dart';
 import 'package:flutter/material.dart';
 
 class EventInfoPage extends StatefulWidget {
@@ -14,6 +18,8 @@ class EventInfoPage extends StatefulWidget {
 class _EventInfoPageState extends State<EventInfoPage> {
   late Future _future;
   bool? isJoined;
+
+  late final PageController _pageController = PageController();
 
   void fetch() {
     _future = Future.delayed(Duration(seconds: 1)).then((_) {
@@ -41,6 +47,12 @@ class _EventInfoPageState extends State<EventInfoPage> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _future,
@@ -51,27 +63,23 @@ class _EventInfoPageState extends State<EventInfoPage> {
           isJoined ??= users.any((user) => user.id == "2");
           return Scaffold(
             appBar: MyAppBar(route: "/events_list", title: data.title),
-            body: Center(child: Text(widget.id)),
-            floatingActionButton: FloatingActionButton.extended(
-              onPressed: () async {
-                setState(() {
-                  isJoined = !isJoined!;
-                });
-              },
-              icon:
-                  isJoined!
-                      ? null
-                      : Icon(
-                        Icons.sentiment_very_satisfied,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-              label: Text(
-                isJoined! ? "Не смогу прийти(" : "Я приду!",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 20,
+            body: Column(
+              children: <Widget>[
+                MyOverflowBar(
+                  pageController: _pageController,
+                  tabs: ["Информация", "Моё участие", "Участники"],
                 ),
-              ),
+                Expanded(
+                  child: PageView(
+                    controller: _pageController,
+                    children: [
+                      EventInfoTab(event: data),
+                      MyPartTab(),
+                      EventMembersTab(),
+                    ],
+                  ),
+                ),
+              ],
             ),
           );
         }
